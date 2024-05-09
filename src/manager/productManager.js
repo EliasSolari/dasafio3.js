@@ -1,7 +1,6 @@
-//Importación de módulos
 import fs from "fs";
 
-let pathFile = "./src/data/products.json";
+let pathFile = "../data/products.json";
 
 let products = [];
 
@@ -21,27 +20,27 @@ const addProduct = async (product) => {
         status: true
     }
 
-    //Validar que no haya campos vacíos
+    
     if (Object.values(newProduct).includes(undefined)) {
         console.log("Todos los campos son obligatorios. Por favor complete.");
         return;
     }
 
-    //Validar que no haya un producto con el mismo código
+    
     const productExist = products.find(product => product.code === code);
     if (productExist) {
         console.log(`El producto ${title} con el código ${code} ya existe. Ingrese uno distinto.`);
         return;
     }
 
-    //Añadimos el producto al array de productos
+    
     products.push(newProduct);
 
     await fs.promises.writeFile(pathFile, JSON.stringify(products));
 
 };
 
-//Fn. que muestra los productos. Recibe como parámetro el límite.
+
 async function getProducts(limit) {
 
     
