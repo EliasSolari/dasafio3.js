@@ -2,7 +2,7 @@
 import fs from "fs";
 
 //Acá se van a crear los carritos
-const pathFile = "./src/data/carts.json";
+const pathFile = "../data/carts.json";
 
 //Arreglo de carritos
 let carts = [];
