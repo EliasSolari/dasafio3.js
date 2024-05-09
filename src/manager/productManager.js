@@ -1,14 +1,13 @@
 import fs from "fs";
 
-let pathFile = "../data/products.json";
-
+let pathFile = "../src/data/products.json";
 let products = [];
 
 const addProduct = async (product) => {
     const {title, description, price, thumbnail, code, stock} = product;
     await getProducts();
-
-     
+    
+    
     const newProduct = {
         id: products.length + 1,
         title,
@@ -19,27 +18,26 @@ const addProduct = async (product) => {
         stock,
         status: true
     }
-
+    
     
     if (Object.values(newProduct).includes(undefined)) {
         console.log("Todos los campos son obligatorios. Por favor complete.");
         return;
     }
-
+    
     
     const productExist = products.find(product => product.code === code);
     if (productExist) {
         console.log(`El producto ${title} con el código ${code} ya existe. Ingrese uno distinto.`);
         return;
     }
-
+    
     
     products.push(newProduct);
-
+    
     await fs.promises.writeFile(pathFile, JSON.stringify(products));
-
+    
 };
-
 
 async function getProducts(limit) {
 
